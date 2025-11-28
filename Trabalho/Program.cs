@@ -31,3 +31,38 @@ public abstract class Veiculo
     public abstract void ExibirInfo();
     public abstract bool PodeTransportar(double peso);
 }
+
+// Classe concreta - Carro
+public class Carro : Veiculo, ITributo
+{
+    public int numeroPortas { get; private set; }
+
+    public Carro(string modelo, int ano, string cor, string marca, string placa, double valor, int numeroPortas) : base(modelo, ano, cor, marca, placa, valor, 4)
+    {
+        this.numeroPortas = numeroPortas;
+    }
+
+    public override void ExibirInfo()
+    {
+        Console.WriteLine("=== CARRO ===");
+        Console.WriteLine($"Modelo: {modelo}");
+        Console.WriteLine($"Ano: {ano}");
+        Console.WriteLine($"Cor: {cor}");
+        Console.WriteLine($"Marca: {marca}");
+        Console.WriteLine($"Placa: {placa}");
+        Console.WriteLine($"Valor: {valor}");
+        Console.WriteLine($"Rodas: {qtdRodas}");
+        Console.WriteLine($"Portas: {numeroPortas}");
+    }
+
+    // Sobrescrita
+    public override bool PodeTransportar(double peso)
+    {
+        return peso <= 500;
+    }
+
+    public double CalcularValorIPVA()
+    {
+        return this.valor * 0.04;
+    }
+}
