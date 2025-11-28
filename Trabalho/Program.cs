@@ -103,3 +103,37 @@ public class Caminhao : Veiculo, ITributo
         return this.valor * 0.03;
     }
 }
+
+// Classe concreta - Moto
+public class Moto : Veiculo, ITributo
+{
+    public int cilindrada { get; private set; }
+
+    public Moto(string modelo, int ano, string cor, string marca, string placa, double valor, int cilindrada) : base(modelo, ano, cor, marca, placa, valor, 2)
+    {
+        this.cilindrada = cilindrada;
+    }
+
+    public override void ExibirInfo()
+    {
+        Console.WriteLine("=== MOTO ===");
+        Console.WriteLine($"Modelo: {modelo}");
+        Console.WriteLine($"Ano: {ano}");
+        Console.WriteLine($"Cor: {cor}");
+        Console.WriteLine($"Marca: {marca}");
+        Console.WriteLine($"Placa: {placa}");
+        Console.WriteLine($"Valor: {valor}");
+        Console.WriteLine($"Rodas: {qtdRodas}");
+        Console.WriteLine($"Cilindrada: {cilindrada} cc");
+    }
+
+    public override bool PodeTransportar(double peso)
+    {
+        return peso <= 150;
+    }
+
+    public double CalcularValorIPVA()
+    {
+        return this.valor * 0.02;
+    }
+}
