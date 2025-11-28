@@ -66,3 +66,40 @@ public class Carro : Veiculo, ITributo
         return this.valor * 0.04;
     }
 }
+
+// Classe concreta - Caminhao
+public class Caminhao : Veiculo, ITributo
+{
+    public double capacidadeCargaKg { get; private set; }
+    public int numeroEixo { get; private set; }
+
+    public Caminhao(string modelo, int ano, string cor, string marca, string placa, double valor, double capacidadeCargaKg, int numeroEixo) : base(modelo, ano, cor, marca, placa, valor, numeroEixo * 2)
+    {
+        this.capacidadeCargaKg = capacidadeCargaKg;
+        this.numeroEixo = numeroEixo;
+    }
+
+    public override void ExibirInfo()
+    {
+        Console.WriteLine("=== CAMINHÃO ===");
+        Console.WriteLine($"Modelo: {modelo}");
+        Console.WriteLine($"Ano: {ano}");
+        Console.WriteLine($"Cor: {cor}");
+        Console.WriteLine($"Marca: {marca}");
+        Console.WriteLine($"Placa: {placa}");
+        Console.WriteLine($"Valor: {valor}");
+        Console.WriteLine($"Rodas: {qtdRodas}");
+        Console.WriteLine($"Capacidade de carga: {capacidadeCargaKg} kg");
+        Console.WriteLine($"Número de eixos: {numeroEixo}");
+    }
+
+    public override bool PodeTransportar(double peso)
+    {
+        return peso <= capacidadeCargaKg;
+    }
+
+    public double CalcularValorIPVA()
+    {
+        return this.valor * 0.03;
+    }
+}
